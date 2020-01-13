@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 ## Based on https://www.bogotobogo.com/DevOps/OpenStack-Install-On-Ubuntu-16-Server.php
 ## It is essential to create a stack user with sudo access or else you will get a HOTS_IP error:
