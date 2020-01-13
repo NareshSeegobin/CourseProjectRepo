@@ -10,7 +10,7 @@
 
 
 sudo adduser stack
-echo "stack ALL=(ALL) NOPASSWD: ALL" |sudo tee -a /etc/sudoers
+echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
 su stack
 cd
 pwd
