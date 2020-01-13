@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 ## Based on https://www.mirantis.com/blog/how-to-install-openstack-on-your-local-machine-using-devstack/
 ## It is essential to create a stack user with sudo access or else you will get a HOTS_IP error:
