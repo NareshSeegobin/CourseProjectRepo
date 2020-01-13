@@ -16,7 +16,15 @@ sudo su - stack
 
 ### git clone https://github.com/openstack-dev/devstack.git -b stable/pike devstack/
 ### Use latest stable as of 20200113 for latest Phyton versions
-git clone https://github.com/openstack-dev/devstack.git -b stable/train devstack/
+##git clone https://github.com/openstack-dev/devstack.git -b stable/train devstack/
+### https://releases.openstack.org/
+## git clone https://github.com/openstack-dev/devstack.git -b stable/stein devstack/
+## git clone https://github.com/openstack-dev/devstack.git -b stable/rocky devstack/
+## git clone https://github.com/openstack-dev/devstack.git -b stable/queens devstack/
+## git clone https://github.com/openstack-dev/devstack.git -b stable/pike devstack/
+
+git clone https://git.openstack.org/openstack-dev/devstack -b stable/train
+
 
 cd devstack/
 
@@ -28,6 +36,7 @@ RABBIT_PASSWORD=\$ADMIN_PASSWORD
 SERVICE_PASSWORD=\$ADMIN_PASSWORD
 HOST_IP=10.0.2.15
 RECLONE=yes
+GIT_BASE=http://git.openstack.org
 EOF
 
 ./stack.sh
