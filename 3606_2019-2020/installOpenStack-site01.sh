@@ -25,6 +25,9 @@ pwd
 ## git clone https://git.openstack.org/openstack-dev/devstack -b stable/pike devstack/
 git clone https://git.openstack.org/openstack-dev/devstack -b stable/train
 
+## https://www.techrepublic.com/article/how-to-install-openstack-on-a-single-ubuntu-server-virtual-machine/
+sudo chown -R stack:stack devstack/
+
 cd devstack
 
 cd devstack/
