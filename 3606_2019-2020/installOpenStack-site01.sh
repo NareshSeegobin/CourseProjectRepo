@@ -6,7 +6,7 @@
 
 ## Revision History:
 ## 20200113-01 - NS - First version
-
+## 20200114-01 - NS - Second revision, merging from other setup blogs.
 
 
 sudo adduser stack
@@ -25,9 +25,13 @@ cat >  local.conf <<EOF
 HOST_IP=127.0.0.1
 GIT_BASE=http://git.openstack.org
 ADMIN_PASSWORD=secret
-DATABASE_PASSWORD=$ADMIN_PASSWORD
-RABBIT_PASSWORD=$ADMIN_PASSWORD
-SERVICE_PASSWORD=$ADMIN_PASSWORD
+## DATABASE_PASSWORD=$ADMIN_PASSWORD
+## RABBIT_PASSWORD=$ADMIN_PASSWORD
+## SERVICE_PASSWORD=$ADMIN_PASSWORD
+## Seems to need \ infront of password variable.
+DATABASE_PASSWORD=\$ADMIN_PASSWORD
+RABBIT_PASSWORD=\$ADMIN_PASSWORD
+SERVICE_PASSWORD=\$ADMIN_PASSWORD
 EOF
 
 ./stack.sh
