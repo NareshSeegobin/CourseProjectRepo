@@ -39,7 +39,11 @@ RABBIT_PASSWORD=$ADMIN_PASSWORD
 SERVICE_PASSWORD=$ADMIN_PASSWORD
 HOST_IP=10.0.2.15
 RECLONE=yes
+## GIT_BASE was from another setup manual. Remove as required.
 GIT_BASE=http://git.openstack.org
 EOF
 
 ./stack.sh
+
+
+
