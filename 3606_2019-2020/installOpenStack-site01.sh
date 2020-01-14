@@ -15,7 +15,16 @@ su stack
 cd
 pwd
 
-git clone https://git.openstack.org/openstack-dev/devstack
+## Original URL for this script
+## git clone https://git.openstack.org/openstack-dev/devstack
+
+## From other blog (script 2)
+## git clone https://git.openstack.org/openstack-dev/devstack -b stable/stein devstack/
+## git clone https://git.openstack.org/openstack-dev/devstack -b stable/rocky devstack/
+## git clone https://git.openstack.org/openstack-dev/devstack -b stable/queens devstack/
+## git clone https://git.openstack.org/openstack-dev/devstack -b stable/pike devstack/
+git clone https://git.openstack.org/openstack-dev/devstack -b stable/train
+
 cd devstack
 
 cd devstack/
@@ -35,4 +44,6 @@ SERVICE_PASSWORD=\$ADMIN_PASSWORD
 EOF
 
 ./stack.sh
+
+
 
