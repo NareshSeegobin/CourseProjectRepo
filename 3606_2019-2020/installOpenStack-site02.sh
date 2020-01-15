@@ -25,6 +25,10 @@ sudo su - stack
 
 git clone https://git.openstack.org/openstack-dev/devstack -b stable/train
 
+## https://www.techrepublic.com/article/how-to-install-openstack-on-a-single-ubuntu-server-virtual-machine/
+## Testing to see if broken pipe will occur.
+## Edit: 20200114-01 - Broken pipe error fixed. Not so sure why site01 script didn't have this error.
+sudo chown -R stack:stack devstack/
 
 cd devstack/
 
@@ -38,11 +42,11 @@ SERVICE_PASSWORD=\$ADMIN_PASSWORD
 ## DATABASE_PASSWORD=$ADMIN_PASSWORD
 ## RABBIT_PASSWORD=$ADMIN_PASSWORD
 ## SERVICE_PASSWORD=$ADMIN_PASSWORD
-## Use local host instead. Might get a broken pipe error
-## HOST_IP=10.0.2.15
-HOST_IP=127.0.0.1
-## Try not to reclone, might get a proken pipe error
-## RECLONE=yes
+## Use local host instead. Might get a broken pipe error --- Didn't solve the issue
+HOST_IP=10.0.2.15
+## HOST_IP=127.0.0.1
+## Try not to reclone, might get a proken pipe error --- Didn't solve the issue
+RECLONE=yes
 ## GIT_BASE was from another setup manual. Remove as required.
 GIT_BASE=http://git.openstack.org
 EOF
