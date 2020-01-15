@@ -13,6 +13,9 @@ echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
 
 sudo su - stack
 
+echo #### Time Stamp: ####
+## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
+printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
 
 ### git clone https://github.com/openstack-dev/devstack.git -b stable/pike devstack/
 ### Use latest stable as of 20200113 for latest Phyton versions
@@ -52,6 +55,15 @@ GIT_BASE=http://git.openstack.org
 EOF
 
 ./stack.sh
+
+echo #### Time Stamp: ####
+## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
+printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
+
+
+
+
+
 
 
 
