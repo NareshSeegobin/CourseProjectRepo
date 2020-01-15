@@ -9,6 +9,13 @@
 ## 20200114-01 - NS - Second revision, merging from other setup blogs.
 
 
+echo #### Time Stamp: ####
+## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
+printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
+echo #### Time Stamp: ####
+
+
+
 sudo adduser stack
 echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
 su stack
@@ -48,5 +55,9 @@ EOF
 
 ./stack.sh
 
+echo #### Time Stamp: ####
+## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
+printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
+echo #### Time Stamp: ####
 
 
