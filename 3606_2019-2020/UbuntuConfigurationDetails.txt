@@ -1,0 +1,54 @@
+
+
+Revision History:
+
+20200115-01 - NS - Initial version
+
+
+
+[source]
+http://releases.ubuntu.com/16.04/ubuntu-16.04.6-desktop-amd64.iso
+
+[Config]
+RAM: 4096MB
+CPU: 2
+Disk: 30GB
+Video Memory: 32MB
+USB: 1.1 <-- Set to USB 1.1 to prevent usage of VBOX Extensions for licensing requirements.
+
+
+
+[Description]
+
+DCIT-ubuntu-16.04.6-server-amd64-dcitstudent
+
+Username: dcitstudent
+Password:  dcitstudent
+
+Updated with:
+
+apt-get update
+apt-get upgrade
+
+
+
+Forwarded ports:
+
+[TCP]
+8081 --> 80
+2222 --> 22
+8121 --> 21
+8443 --> 443
+8110 --> 110
+8125 --> 25
+23306 --> 3306
+
+
+[UDP]
+NONE
+
+20200115 - NS
+
+
+
+
