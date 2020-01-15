@@ -38,8 +38,11 @@ SERVICE_PASSWORD=\$ADMIN_PASSWORD
 ## DATABASE_PASSWORD=$ADMIN_PASSWORD
 ## RABBIT_PASSWORD=$ADMIN_PASSWORD
 ## SERVICE_PASSWORD=$ADMIN_PASSWORD
-HOST_IP=10.0.2.15
-RECLONE=yes
+## Use local host instead
+## HOST_IP=10.0.2.15
+HOST_IP=127.0.0.1
+## Try not to reclone
+## RECLONE=yes
 ## GIT_BASE was from another setup manual. Remove as required.
 GIT_BASE=http://git.openstack.org
 EOF
