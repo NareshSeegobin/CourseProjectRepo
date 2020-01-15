@@ -38,10 +38,10 @@ SERVICE_PASSWORD=\$ADMIN_PASSWORD
 ## DATABASE_PASSWORD=$ADMIN_PASSWORD
 ## RABBIT_PASSWORD=$ADMIN_PASSWORD
 ## SERVICE_PASSWORD=$ADMIN_PASSWORD
-## Use local host instead
+## Use local host instead. Might get a broken pipe error
 ## HOST_IP=10.0.2.15
 HOST_IP=127.0.0.1
-## Try not to reclone
+## Try not to reclone, might get a proken pipe error
 ## RECLONE=yes
 ## GIT_BASE was from another setup manual. Remove as required.
 GIT_BASE=http://git.openstack.org
