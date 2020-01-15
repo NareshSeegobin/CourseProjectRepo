@@ -16,6 +16,7 @@ sudo su - stack
 echo #### Time Stamp: ####
 ## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
 printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
+echo #### Time Stamp: ####
 
 ### git clone https://github.com/openstack-dev/devstack.git -b stable/pike devstack/
 ### Use latest stable as of 20200113 for latest Phyton versions
@@ -59,6 +60,8 @@ EOF
 echo #### Time Stamp: ####
 ## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
 printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
+echo #### Time Stamp: ####
+
 
 
 
