@@ -1,0 +1,83 @@
+Author: Naresh Seegobin (http://www.nareshseegobin.com)
+
+Revision History: 
+
+20200117-01 - Initial notes.
+
+
+
+
+
+Setting quotas:
+https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/quota.html
+https://docs.openstack.org/horizon/latest/admin/set-quotas.html
+
+
+openstack cli errors
+
+When attempting to use the openstack cli get error "Missing value auth-url required for auth plugin password"
+
+https://ask.openstack.org/en/question/98041/missing-value-auth-url-required-for-auth-plugin-password/
+
+Missing value auth-url required for auth plugin password
+https://stackoverflow.com/questions/42844649/missing-value-auth-url-required-for-auth-plugin-password
+Make sure you are logged into horizon and download the rc file (right corner). After that do source admin-openrc.sh
+
+openstack project list
+
+openstack quota list --detail --network
+openstack quota list --detail --compute
+openstack quota list --detail --volume
+
+
+openstack quota set --routers "integer" "project name"
+openstack quota set --routers  100 demo
+
+openstack quota set --networks "integer" "project name"
+openstack quota set --networks  100 demo
+
+openstack quota list --network  --project demo
+
+
+openstack quota set --routers 100 admin
+openstack quota set --networks 100 admin
+
+
+
+Creating Instances
+
+Volume error
+Volume did not finish being created even after we waited some seconds
+https://ask.openstack.org/en/question/115832/volume-did-not-finish-being-created-even-after-we-waited-some-seconds/
+https://bugs.launchpad.net/cinder/+bug/1430751
+Set creation of volumes to no.
+
+
+
+
+Connecting to consoles
+
+https://bugs.launchpad.net/cinder/+bug/1430751
+instance console error [solved]
+
+
+When connecting to the console remember that this is running in a VM. Which means port forwarding will have to be setup.
+This installtion in Ubuntu the local instance ip addresses are based on the inital ip addresses used in the OpenStack installtion.
+In this case the OpenStack VM uses ip address 10.0.2.15
+the console URL will be similar to the following:
+http://10.0.2.15:6080/vnc_lite.html?path=%3Ftoken%3Dba2d3d38-afd2-4b7c-b96a-83a8547ab922&title=compute01(149ba0c3-43d1-45b0-8791-3e9c91118e2f)
+
+Configure port forwarding for port 6080.
+Then take the URL and replace the 10.0.2.15 with 127.0.0.1
+
+http://127.0.0.1:6080/vnc_lite.html?path=%3Ftoken%3Dba2d3d38-afd2-4b7c-b96a-83a8547ab922&title=compute01(149ba0c3-43d1-45b0-8791-3e9c91118e2f)
+
+
+
+
+
+
+
+
+
+
