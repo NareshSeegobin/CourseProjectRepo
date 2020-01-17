@@ -57,8 +57,9 @@ SERVICE_PASSWORD=\$ADMIN_PASSWORD
 ## RABBIT_PASSWORD=$ADMIN_PASSWORD
 ## SERVICE_PASSWORD=$ADMIN_PASSWORD
 ## EDIT: Comment out this comment [Use local host instead. Might get a broken pipe error --- Didn't solve the issue]
-HOST_IP=10.0.2.15
-## HOST_IP=127.0.0.1
+## Use localhost IP for when conencting to compute nodes via 6080.
+## HOST_IP=10.0.2.15
+HOST_IP=127.0.0.1
 ## EDIT: Comment out this comment [Try not to reclone, might get a proken pipe error --- Didn't solve the issue]
 RECLONE=yes
 ## GIT_BASE was from another setup manual. Remove as required.
