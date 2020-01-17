@@ -3,7 +3,7 @@
 Revision History:
 
 20200115-01 - NS - Initial version
-
+20200117-01 - NS - Added 6080 port forwarding.
 
 
 [source]
@@ -20,7 +20,7 @@ USB: 1.1 <-- Set to USB 1.1 to prevent usage of VBOX Extensions for licensing re
 
 [Description]
 
-DCIT-ubuntu-16.04.6-server-amd64-dcitstudent
+DCIT-ubuntu-16.04.6-server-amd64-dcitstudent-OpenStack
 
 Username: dcitstudent
 Password:  dcitstudent
@@ -42,12 +42,13 @@ Forwarded ports:
 8110 --> 110
 8125 --> 25
 23306 --> 3306
-
+6080 --> 6080
 
 [UDP]
 NONE
 
 20200115 - NS
+20200117 - NS
 
 
 
