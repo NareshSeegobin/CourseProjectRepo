@@ -81,42 +81,62 @@ echo [Time Stamp:]
 ## Cinder Install - 20200228-01 - NS
 
 ## Install ruby for Chef-client
-apt install ruby -y
+## https://docs.oracle.com/cd/E78305_01/E78304/html/openstack-envars.html
 
-
-## https://discoposse.com/2013/02/26/openstack-lab-on-vmware-workstation-adding-cinder-volume-features/
-
-## Install chef SErver and Client first
-## https://docs.chef.io/install_workstation/
-## https://downloads.chef.io/chef-workstation/
-wget https://packages.chef.io/files/stable/chef-workstation/0.16.31/ubuntu/16.04/chef-workstation_0.16.31-1_amd64.deb
-sudo dpkg -i chef-workstation_0.16.31-1_amd64.deb
-chef -v
-
-## https://docs.openstack.org/project-deploy-guide/openstack-chef/latest/deploy.html 
-git clone https://opendev.org/openstack/openstack-chef
-cd openstack-chef
-mkdir -p /etc/chef && cp .chef/encrypted_data_bag_secret /etc/chef/openstack_data_bag_secret
-chef-client -z -E allinone -r 'role[allinone]'
+## $ export OS_AUTH_URL=http://10.0.0.10:5000/v3
+export OS_AUTH_URL=http://127.0.0.1/identity
+export OS_TENANT_NAME=admin
+export OS_PROJECT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=secret
+export OS_PROJECT_DOMAIN_ID=default
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_ID=default
+export OS_USER_DOMAIN_NAME=Default
 
 
 
 
-sudo su -
+## https://www.tecmint.com/add-new-disks-using-lvm-to-linux/
+pvcreate /dev/sdb1
+pvcreate /dev/sdc1
 
-## Need to go to the location of the local.conf file
-## It should have been created when openstack was being installed
-## e.g. 
-## cd devstack/
-## cat >  local.conf <<EOF
+## https://fatmin.com/2015/04/28/openstack-cinder-add-additional-backend-volumes/
+vgscan | grep cinder
+vgcreate cinder-volumes-1-b /dev/sdb1
+vgcreate cinder-volumes-2-c /dev/sdc1
+vgscan | grep cinder
+
+### [lvm1]
+### volume_group=cinder-volumes-1-b
+### volume_driver=cinder.volume.drivers.lvm.LVMISCSIDriver
+### volume_backend_name=lvm1
+
+### [lvm2]
+### volume_group=cinder-volumes-2-c
+### volume_driver=cinder.volume.drivers.lvm.LVMISCSIDriver
+### volume_backend_name=lvm2
 
 
-pvcreate /dev/sdb
-pvcreate /dev/sdc
-vgcreate cinder-volumes /dev/sdb
-vgcreate cinder-volumes /dev/sdc
 
-service cinder-volume restart
+
+### service cinder-volume restart
+
+cinder type-create lvm1
+cinder type-create lvm2
+
+cinder type-key lvm1 set volume_backend_name=cinder-volumes-1-b
+cinder type-key lvm2 set volume_backend_name=cinder-volumes-2-c
+
+## https://blog.csdn.net/weixin_30919235/article/details/99755648
+vgs
+
+
+cinder extra-specs-list
+
+cinder create --volume-type lvm1 --display-name test_multi_backend 1
+
+
 
 
 ## These below  don't help:
