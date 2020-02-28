@@ -78,12 +78,77 @@ echo [Time Stamp:]
 printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
 echo [Time Stamp:]
 
-## Cinder Install 
+## Cinder Install - 20200228-01 - NS
+
+## Install ruby for Chef-client
+apt install ruby -y
+
+
 ## https://discoposse.com/2013/02/26/openstack-lab-on-vmware-workstation-adding-cinder-volume-features/
 
+## Install chef SErver and Client first
+## https://docs.chef.io/install_workstation/
+## https://downloads.chef.io/chef-workstation/
+wget https://packages.chef.io/files/stable/chef-workstation/0.16.31/ubuntu/16.04/chef-workstation_0.16.31-1_amd64.deb
+sudo dpkg -i chef-workstation_0.16.31-1_amd64.deb
+chef -v
 
-sudo su - stack
+## https://docs.openstack.org/project-deploy-guide/openstack-chef/latest/deploy.html 
+git clone https://opendev.org/openstack/openstack-chef
+cd openstack-chef
+mkdir -p /etc/chef && cp .chef/encrypted_data_bag_secret /etc/chef/openstack_data_bag_secret
+chef-client -z -E allinone -r 'role[allinone]'
 
+
+
+
+sudo su -
+
+## Need to go to the location of the local.conf file
+## It should have been created when openstack was being installed
+## e.g. 
+## cd devstack/
+## cat >  local.conf <<EOF
+
+
+pvcreate /dev/sdb
+pvcreate /dev/sdc
+vgcreate cinder-volumes /dev/sdb
+vgcreate cinder-volumes /dev/sdc
+
+service cinder-volume restart
+
+
+## These below  don't help:
+## https://ask.openstack.org/en/question/27569/admin-openrcsh/
+## https://docs.openstack.org/mitaka/install-guide-obs/keystone-openrc.html
+
+
+cd /opt/stack/devstack
+source openrc
+
+hostname --fqdn
+knife node show DCIT-ubuntu
+
+## Little help: https://docs.chef.io/knife/
+## Some help: https://www.rubydoc.info/gems/knife-openstack/0.6.2
+
+## https://www.amazon.com/Mastering-OpenStack-Second-Design-infrastructures/dp/1786463989
+apt install chef -y
+## URL: http://127.0.0.1:4000
+
+## From this link: https://www.rubydoc.info/gems/knife-openstack/0.6.2
+## gem install knife-openstack
+knife configure -initial
+## https://127.0.0.1:443
+
+
+
+
+echo [Time Stamp:]
+## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
+printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
+echo [Time Stamp
 
 
 
