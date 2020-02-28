@@ -69,6 +69,8 @@ HOST_IP=127.0.0.1
 RECLONE=yes
 ## GIT_BASE was from another setup manual. Remove as required.
 GIT_BASE=http://git.openstack.org
+## https://ask.openstack.org/en/question/11017/how-do-you-mount-an-additional-disk-for-cinder/
+CINDER_MULTI_LVM_BACKEND=True
 EOF
 
 ./stack.sh
@@ -78,7 +80,7 @@ echo [Time Stamp:]
 printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
 echo [Time Stamp:]
 
-## Cinder Install - 20200228-01 - NS
+## Cinder Volume Config [Install] - 20200228-01 - NS
 
 ## Install ruby for Chef-client
 ## https://docs.oracle.com/cd/E78305_01/E78304/html/openstack-envars.html
@@ -98,17 +100,21 @@ export OS_USER_DOMAIN_NAME=Default
 
 
 ## https://www.tecmint.com/add-new-disks-using-lvm-to-linux/
+## http://www.devops-engineer.com/how-to-create-linux-lvm-step-by-step/
+## https://www.certdepot.net/sys-manage-physical-volumes-volume-groups-and-logical-volumes/
 pvcreate /dev/sdb1
 pvcreate /dev/sdc1
+pvscan
 
 ## https://fatmin.com/2015/04/28/openstack-cinder-add-additional-backend-volumes/
 vgscan | grep cinder
-vgcreate cinder-volumes-1-b /dev/sdb1
-vgcreate cinder-volumes-2-c /dev/sdc1
+vgcreate cinder-volumes-1 /dev/sdb1 /dev/sdc1
+## vgcreate cinder-volumes-2-c /dev/sdc1
 vgscan | grep cinder
 
+## /etc/cinder/cinder.conf
 ### [lvm1]
-### volume_group=cinder-volumes-1-b
+### volume_group=cinder-volumes-1
 ### volume_driver=cinder.volume.drivers.lvm.LVMISCSIDriver
 ### volume_backend_name=lvm1
 
@@ -117,51 +123,82 @@ vgscan | grep cinder
 ### volume_driver=cinder.volume.drivers.lvm.LVMISCSIDriver
 ### volume_backend_name=lvm2
 
+cat >>  /etc/cinder/cinder.conf <<EOF
+
+[lvm1]
+volume_group=cinder-volumes-1
+volume_driver=cinder.volume.drivers.lvm.LVMISCSIDriver
+volume_backend_name=lvm1
+
+EOF
+
 
 
 
 ### service cinder-volume restart
 
 cinder type-create lvm1
-cinder type-create lvm2
+## cinder type-create lvm2
 
 cinder type-key lvm1 set volume_backend_name=cinder-volumes-1-b
 cinder type-key lvm2 set volume_backend_name=cinder-volumes-2-c
 
 ## https://blog.csdn.net/weixin_30919235/article/details/99755648
 vgs
-
-
+cinder type-list
 cinder extra-specs-list
 
 cinder create --volume-type lvm1 --display-name test_multi_backend 1
 
-
+ cinder-manage service list
+ 
+ 
 
 
 ## These below  don't help:
 ## https://ask.openstack.org/en/question/27569/admin-openrcsh/
-## https://docs.openstack.org/mitaka/install-guide-obs/keystone-openrc.html
+### https://docs.openstack.org/mitaka/install-guide-obs/keystone-openrc.html
 
+### cd /opt/stack/devstack
+### source /opt/stack/devstack/openrc
 
-cd /opt/stack/devstack
-source openrc
-
-hostname --fqdn
-knife node show DCIT-ubuntu
+### hostname --fqdn
+### knife node show DCIT-ubuntu
 
 ## Little help: https://docs.chef.io/knife/
 ## Some help: https://www.rubydoc.info/gems/knife-openstack/0.6.2
 
 ## https://www.amazon.com/Mastering-OpenStack-Second-Design-infrastructures/dp/1786463989
-apt install chef -y
+### apt install chef -y
 ## URL: http://127.0.0.1:4000
+
+
+### wget https://packages.chef.io/files/stable/chefworkstation/0.14/ubuntu/18.04/chefworkstation_0.14.16-1_amd64.deb
+wget https://packages.chef.io/files/stable/chef-workstation/0.16.31/ubuntu/16.04/chef-workstation_0.16.31-1_amd64.deb
+dpkg -i chef-workstation_0.16.31-1_amd64.deb
+chef -v
+
+### https://docs.chef.io/workstation_setup/
+
+
+which ruby
+echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
+which ruby
+
+## echo 'export PATH="/opt/chef-workstation/embedded/bin:$PATH"' >> ~/.configuration_file && source ~/.configuration_file
+echo 'export PATH="/opt/chef-workstation/embedded/bin:$PATH"' >> ~/.bash_profile && source ~/.bash_profile
+
+chef generate repo chef-repo
+mkdir -p ~/chef-repo/.chef
+echo '.chef' >> ~/chef-repo/.gitignore
+
+chef-server-ctl org-create "DCIT-ubuntu-org" "DCIT-ubuntu-org-fullname" -f /tmp/chef.key
+
 
 ## From this link: https://www.rubydoc.info/gems/knife-openstack/0.6.2
 ## gem install knife-openstack
-knife configure -initial
+### knife configure -initial
 ## https://127.0.0.1:443
-
 
 
 
