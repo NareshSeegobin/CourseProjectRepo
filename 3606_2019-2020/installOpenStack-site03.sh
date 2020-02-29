@@ -26,6 +26,10 @@ sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt-get update -y
 sudo apt-get install python3.6 -y
 
+## https://askubuntu.com/questions/590027/how-to-set-python-3-as-default-interpreter-in-ubuntu-14-04
+## Must execute in new user environment - each time you sudo su -
+alias python=/usr/bin/python3.6
+
 ## https://stackoverflow.com/questions/6587507/how-to-install-pip-with-python-3
 sudo apt-get install python-pip -y
 sudo apt-get install python3-pip -y
@@ -35,10 +39,18 @@ sudo apt-get install python3-pip -y
 sudo pip install --upgrade pip
 sudo pip3 install --upgrade pip
 
+## Do not need this: http://devopspy.com/python/install-python-3-6-ubuntu-lts/
+## https://askubuntu.com/questions/590027/how-to-set-python-3-as-default-interpreter-in-ubuntu-14-04
+##alias pip=/usr/bin/python3.6
+
 sudo useradd -s /bin/bash -d /opt/stack -m stack
 echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
 
 sudo su - stack
+
+## https://askubuntu.com/questions/590027/how-to-set-python-3-as-default-interpreter-in-ubuntu-14-04
+## Must execute in new user environment - each time you sudo su -
+alias python=/usr/bin/python3.6
 
 echo [Time Stamp:]
 ## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
