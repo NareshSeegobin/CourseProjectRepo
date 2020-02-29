@@ -22,9 +22,9 @@
 ##                    
 
 ### https://askubuntu.com/questions/865554/how-do-i-install-python-3-6-using-apt-get
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt-get update
-sudo apt-get install python3.6
+sudo add-apt-repository ppa:deadsnakes/ppa -y
+sudo apt-get update -y
+sudo apt-get install python3.6 -y
 
 ## https://www.liquidweb.com/kb/how-to-install-pip-on-ubuntu-14-04-lts/
 pip install --upgrade pip
