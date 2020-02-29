@@ -135,6 +135,7 @@ KEYSTONE_TOKEN_FORMAT=UUID
 PRIVATE_NETWORK_NAME=net1
 PUBLIC_NETWORK_NAME=ext_net
 
+
 #-----------------------------
 # Neutron
 #-----------------------------
@@ -160,6 +161,11 @@ if [ "$Q_PLUGIN" = "ml2" ]; then
   :
 fi
 
+
+## https://stackoverflow.com/questions/21270426/enabled-services-in-devstack
+enable_service swift
+
+## https://www.rushiagr.com/blog/2014/01/16/playing-around-with-cinder-backend/
 CINDER_MULTI_LVM_BACKEND=True
 ## End of File
 EOF
