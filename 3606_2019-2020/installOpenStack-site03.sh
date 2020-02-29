@@ -167,6 +167,11 @@ enable_service swift
 
 ## https://www.rushiagr.com/blog/2014/01/16/playing-around-with-cinder-backend/
 CINDER_MULTI_LVM_BACKEND=True
+
+## https://stackoverflow.com/questions/20390267/installing-openstack-errors
+## https://ask.openstack.org/en/question/57376/installing-devstack-unable-to-connect-to-gitopenstackorg/
+GIT_BASE=${GIT_BASE:-https://git.openstack.org}
+
 ## End of File
 EOF
 
