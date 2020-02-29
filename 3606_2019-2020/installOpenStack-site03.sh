@@ -70,7 +70,98 @@ RECLONE=yes
 ## GIT_BASE was from another setup manual. Remove as required.
 GIT_BASE=http://git.openstack.org
 ## https://ask.openstack.org/en/question/11017/how-do-you-mount-an-additional-disk-for-cinder/
+
+## https://gist.github.com/amotoki/b5ca4affd768177ed911
+HORIZON_BRANCH=stable/train
+KEYSTONE_BRANCH=stable/train
+NOVA_BRANCH=stable/train
+NEUTRON_BRANCH=stable/train
+GLANCE_BRANCH=stable/train
+CINDER_BRANCH=stable/train
+HEAT_BRANCH=stable/train
+
+
+## https://docs.openstack.org/horizon/pike/contributor/ref/local_conf.html
+# Enable Heat
+enable_plugin heat https://git.openstack.org/openstack/heat
+# Enable Neutron
+enable_plugin neutron https://git.openstack.org/openstack/neutron
+# Enable the Trunks extension for Neutron
+enable_service q-trunk
+# Enable the QoS extension for Neutron
+enable_service q-qos
+
+
+enable_service ceilometer-acompute ceilometer-acentral ceilometer-collector ceilometer-api
+enable_service s-proxy s-object s-container s-account
+
+enable_plugin sahara git://git.openstack.org/openstack/sahara stable/train
+enable_plugin trove git://git.openstack.org/openstack/trove stable/train
+
+enable_plugin sahara-dashboard git://git.openstack.org/openstack/sahara-dashboard stable/train
+enable_plugin trove-dashboard git://git.openstack.org/openstack/trove-dashboard stable/train
+
+enable_plugin neutron https://git.openstack.org/openstack/neutron stable/train
+#enable_plugin neutron-lbaas https://git.openstack.org/openstack/neutron-lbaas
+#NEUTRON_LBAAS_SERVICE_PROVIDERV2="LOADBALANCERV2:Haproxy:neutron_lbaas.drivers.haproxy.plugin_driver.HaproxyOnHostPluginDriver:default"
+#NEUTRON_LBAAS_SERVICE_PROVIDERV2="LOADBALANCERV2:Octavia:neutron_lbaas.drivers.octavia.driver.OctaviaDriver:default"
+#enable_plugin neutron-lbaas-dashboard https://git.openstack.org/openstack/neutron-lbaas-dashboard
+#enable_plugin neutron-lbaas-dashboard file:///home/ubuntu/work/neutron-lbaas-dashboard review/akihiro_motoki/devstack-plugin
+enable_plugin neutron-vpnaas https://git.openstack.org/openstack/neutron-vpnaas stable/train
+
+enable_plugin magnum https://git.openstack.org/openstack/magnum master
+enable_plugin magnum-ui https://git.openstack.org/openstack/magnum-ui master
+
+# designate-dashboard is installed by designate devstack plugin
+enable_plugin designate https://git.openstack.org/openstack/designate stable/train
+DESIGNATE_BACKEND_DRIVER=fake
+DESIGNATE_BRANCH=stable/train
+DESIGNATEDASHBOARD_BRANCH=stable/train
+
+# murano-dashboard is installed by murano devstack plugin
+enable_plugin murano https://git.openstack.org/openstack/murano stable/train
+MURANO_BRANCH=stable/train
+MURANO_DASHBOARD_BRANCH=stable/train
+enable_service murano-cfapi
+MURANO_APPS=io.murano.apps.apache.Tomcat,io.murano.apps.Guacamole
+
+# Some more processing for translation check site
+enable_plugin horizon-i18n-tools https://github.com/amotoki/horizon-i18n-tools.git
+
+LIBS_FROM_GIT=django_openstack_auth
+HORIZONAUTH_BRANCH=stable/train
+
+KEYSTONE_TOKEN_FORMAT=UUID
+PRIVATE_NETWORK_NAME=net1
+PUBLIC_NETWORK_NAME=ext_net
+
+#-----------------------------
+# Neutron
+#-----------------------------
+disable_service n-net
+enable_service neutron q-svc q-agt
+enable_service q-dhcp
+enable_service q-l3
+enable_service q-meta
+#enable_service q-lbaas
+enable_service q-lbaasv2
+enable_service q-fwaas
+enable_service q-vpn
+enable_service q-qos
+enable_service q-flavors
+# murano devstack enables q-metering by default
+disable_service q-metering
+
+Q_PLUGIN=ml2
+#Q_USE_DEBUG_COMMAND=True
+if [ "$Q_PLUGIN" = "ml2" ]; then
+  #Q_ML2_TENANT_NETWORK_TYPE=gre
+  Q_ML2_TENANT_NETWORK_TYPE=vxlan
+  :
+fi
+
 CINDER_MULTI_LVM_BACKEND=True
+## End of File
 EOF
 
 ./stack.sh
@@ -129,7 +220,7 @@ cat >>  /etc/cinder/cinder.conf <<EOF
 volume_group=cinder-volumes-1
 volume_driver=cinder.volume.drivers.lvm.LVMISCSIDriver
 volume_backend_name=lvm1
-
+## END
 EOF
 
 
