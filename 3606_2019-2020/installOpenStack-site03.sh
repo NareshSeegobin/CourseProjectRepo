@@ -84,12 +84,12 @@ HEAT_BRANCH=stable/train
 ## https://docs.openstack.org/horizon/pike/contributor/ref/local_conf.html
 # Enable Heat
 enable_plugin heat https://git.openstack.org/openstack/heat
-# Enable Neutron
-enable_plugin neutron https://git.openstack.org/openstack/neutron
+# Enable Neutron - duplicated below
+### enable_plugin neutron https://git.openstack.org/openstack/neutron
 # Enable the Trunks extension for Neutron
 enable_service q-trunk
 # Enable the QoS extension for Neutron
-enable_service q-qos
+## enable_service q-qos
 
 
 enable_service ceilometer-acompute ceilometer-acentral ceilometer-collector ceilometer-api
@@ -303,7 +303,6 @@ echo [Time Stamp:]
 ## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
 printf '%(%Y-%m-%d %H-%M-%S)T\n' -1 
 echo [Time Stamp
-
 
 
 
