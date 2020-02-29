@@ -26,8 +26,14 @@ sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt-get update -y
 sudo apt-get install python3.6 -y
 
+## https://stackoverflow.com/questions/6587507/how-to-install-pip-with-python-3
+sudo apt-get install python-pip -y
+sudo apt-get install python3-pip -y
+
+
 ## https://www.liquidweb.com/kb/how-to-install-pip-on-ubuntu-14-04-lts/
-pip install --upgrade pip
+sudo pip install --upgrade pip
+sudo pip3 install --upgrade pip
 
 sudo useradd -s /bin/bash -d /opt/stack -m stack
 echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
