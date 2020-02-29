@@ -95,6 +95,10 @@ cat >  local.conf <<EOF
 ## https://wiki.openstack.org/wiki/Python3
 USE_PYTHON3=True
 ENABLED_PYTHON3_PACKAGES=horizon
+## https://docs.openstack.org/devstack/latest/configuration.html#use-python3
+PIP_UPGRADE=True
+
+INSTALL_TEMPEST=True
 
 
 ADMIN_PASSWORD=secret
