@@ -56,7 +56,7 @@ sudo su - stack
 
 ## https://askubuntu.com/questions/590027/how-to-set-python-3-as-default-interpreter-in-ubuntu-14-04
 ## Must execute in new user environment - each time you sudo su -
-alias python=/usr/bin/python3.6
+### alias python=/usr/bin/python3.6
 
 echo [Time Stamp:]
 ## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
