@@ -49,6 +49,12 @@
 ## https://askubuntu.com/questions/590027/how-to-set-python-3-as-default-interpreter-in-ubuntu-14-04
 ##alias pip=/usr/bin/python3.6
 
+### https://wiki.openstack.org/wiki/Python3
+sudo apt-get install python3-dev -y
+sudo apt-get install python3-pip -y
+sudo python3 -m pip install python-memcached
+
+
 sudo useradd -s /bin/bash -d /opt/stack -m stack
 echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
 
@@ -85,6 +91,12 @@ cd devstack/
 
 cat >  local.conf <<EOF
 [[local|localrc]]
+
+## https://wiki.openstack.org/wiki/Python3
+USE_PYTHON3=True
+ENABLED_PYTHON3_PACKAGES=horizon
+
+
 ADMIN_PASSWORD=secret
 DATABASE_PASSWORD=\$ADMIN_PASSWORD
 RABBIT_PASSWORD=\$ADMIN_PASSWORD
