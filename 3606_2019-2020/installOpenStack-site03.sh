@@ -95,11 +95,12 @@ enable_service q-trunk
 enable_service ceilometer-acompute ceilometer-acentral ceilometer-collector ceilometer-api
 enable_service s-proxy s-object s-container s-account
 
-enable_plugin sahara git://git.openstack.org/openstack/sahara stable/train
-enable_plugin trove git://git.openstack.org/openstack/trove stable/train
+## https://ask.openstack.org/en/question/57376/installing-devstack-unable-to-connect-to-gitopenstackorg/
+enable_plugin sahara https://git.openstack.org/openstack/sahara stable/train
+enable_plugin trove https://git.openstack.org/openstack/trove stable/train
 
-enable_plugin sahara-dashboard git://git.openstack.org/openstack/sahara-dashboard stable/train
-enable_plugin trove-dashboard git://git.openstack.org/openstack/trove-dashboard stable/train
+enable_plugin sahara-dashboard https://git.openstack.org/openstack/sahara-dashboard stable/train
+enable_plugin trove-dashboard https://git.openstack.org/openstack/trove-dashboard stable/train
 
 enable_plugin neutron https://git.openstack.org/openstack/neutron stable/train
 #enable_plugin neutron-lbaas https://git.openstack.org/openstack/neutron-lbaas
@@ -170,7 +171,8 @@ CINDER_MULTI_LVM_BACKEND=True
 
 ## https://stackoverflow.com/questions/20390267/installing-openstack-errors
 ## https://ask.openstack.org/en/question/57376/installing-devstack-unable-to-connect-to-gitopenstackorg/
-GIT_BASE=${GIT_BASE:-https://git.openstack.org}
+### Didn't work - need to change git:// to https://
+### GIT_BASE=${GIT_BASE:-https://git.openstack.org}
 
 ## End of File
 EOF
