@@ -21,7 +21,13 @@
 ##                    
 ##                    
 
+### https://askubuntu.com/questions/865554/how-do-i-install-python-3-6-using-apt-get
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install python3.6
 
+## https://www.liquidweb.com/kb/how-to-install-pip-on-ubuntu-14-04-lts/
+pip install --upgrade pip
 
 sudo useradd -s /bin/bash -d /opt/stack -m stack
 echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
