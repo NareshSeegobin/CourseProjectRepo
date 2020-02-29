@@ -51,6 +51,8 @@ sudo chown -R stack:stack devstack/
 
 cd devstack/
 
+########    CAT local.conf   ############    CAT local.conf   ##########    CAT local.conf   #####
+
 cat >  local.conf <<EOF
 [[local|localrc]]
 ADMIN_PASSWORD=secret
@@ -176,6 +178,10 @@ CINDER_MULTI_LVM_BACKEND=True
 
 ## End of File
 EOF
+
+###############    EOF   #########################    EOF   ######################    EOF   ####
+
+
 
 ./stack.sh
 
