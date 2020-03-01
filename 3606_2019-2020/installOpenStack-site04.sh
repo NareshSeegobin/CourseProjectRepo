@@ -266,9 +266,12 @@ EOF
 ./stack.sh
 
 
+./run_tests.sh
+
 ### https://github.com/openstack/devstack/blob/master/samples/local.sh
 ### https://raw.githubusercontent.com/openstack/devstack/master/samples/local.sh
 wget https://raw.githubusercontent.com/openstack/devstack/master/samples/local.sh
+chmod 777 ./local.sh
 ./local.sh
 
 
