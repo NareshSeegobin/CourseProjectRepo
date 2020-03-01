@@ -283,7 +283,11 @@ EOF
 ### https://raw.githubusercontent.com/openstack/devstack/master/samples/local.sh
 wget https://raw.githubusercontent.com/openstack/devstack/master/samples/local.sh
 chmod 777 ./local.sh
-./local.sh
+
+### 20200301 - NS - error executing
+## stack@dcit-ubuntu18:~/devstack$ ./local.sh
+## WARNING: setting legacy OS_TENANT_NAME to support cli tools.
+## ./local.sh
 
 
 
