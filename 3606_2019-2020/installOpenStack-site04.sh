@@ -54,7 +54,8 @@ sudo apt-get install python3-dev -y
 sudo apt-get install python3-pip -y
 sudo python3 -m pip install python-memcached
 ## https://askubuntu.com/questions/712339/how-to-upgrade-pip-to-latest
-sudo -H pip3 install --upgrade pip
+## https://stackoverflow.com/questions/38613316/how-to-upgrade-pip3
+sudo -H pip3 install --upgrade pip -y
 
 sudo useradd -s /bin/bash -d /opt/stack -m stack
 echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
