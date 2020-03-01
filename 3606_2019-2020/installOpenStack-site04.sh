@@ -49,6 +49,7 @@
 ## https://askubuntu.com/questions/590027/how-to-set-python-3-as-default-interpreter-in-ubuntu-14-04
 ##alias pip=/usr/bin/python3.6
 
+
 ### Automatically disabled Acquire::http::Pipeline-Depth due to incorrect response from server/proxy. (man 5 apt.conf)
 ### https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-set-the-proxy-for-apt-for-ubuntu-18-04/
 ### https://askubuntu.com/questions/344802/why-is-apt-get-always-using-proxy-although-no-proxy-is-configured
@@ -59,6 +60,22 @@ Acquire::https::Proxy "false";
 Acquire::ftp::Proxy "false";
 EOF
 
+### https://gist.github.com/trastle/5722089
+### https://askubuntu.com/questions/679233/failed-to-fetch-hash-sum-mismatch-tried-rm-apt-list-but-didnt-work
+sudo touch /etc/apt/apt.conf.d/99fixbadproxy
+cat >  /etc/apt/apt.conf.d/99fixbadproxy <<EOF
+Acquire::http::Pipeline-Depth "0";
+Acquire::http::No-Cache=True;
+Acquire::https::Pipeline-Depth "0";
+Acquire::https::No-Cache=True;
+Acquire::ftp::Pipeline-Depth "0";
+Acquire::ftp::No-Cache=True;
+Acquire::BrokenProxy=true;
+EOF
+
+
+sudo apt-get update -y && sudo apt-get upgrade -y
+
 
 ### https://wiki.openstack.org/wiki/Python3
 sudo apt-get install python3-dev -y
@@ -66,7 +83,7 @@ sudo apt-get install python3-pip -y
 sudo python3 -m pip install python-memcached
 ## https://askubuntu.com/questions/712339/how-to-upgrade-pip-to-latest
 ## https://stackoverflow.com/questions/38613316/how-to-upgrade-pip3
-sudo -H pip3 install --upgrade pip -y
+sudo -H pip3 install --upgrade pip
 
 sudo useradd -s /bin/bash -d /opt/stack -m stack
 echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
