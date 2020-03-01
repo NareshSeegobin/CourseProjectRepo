@@ -210,9 +210,10 @@ enable_plugin horizon-i18n-tools https://github.com/amotoki/horizon-i18n-tools.g
 LIBS_FROM_GIT=django_openstack_auth
 HORIZONAUTH_BRANCH=stable/train
 
-KEYSTONE_TOKEN_FORMAT=UUID
-PRIVATE_NETWORK_NAME=net1
-PUBLIC_NETWORK_NAME=ext_net
+## 20200229-01 - NS - removed becasue of keystone launch error
+## KEYSTONE_TOKEN_FORMAT=UUID
+## PRIVATE_NETWORK_NAME=net1
+## PUBLIC_NETWORK_NAME=ext_net
 
 
 #-----------------------------
