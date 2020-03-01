@@ -175,10 +175,15 @@ enable_service s-proxy s-object s-container s-account
 
 ## https://ask.openstack.org/en/question/57376/installing-devstack-unable-to-connect-to-gitopenstackorg/
 enable_plugin sahara https://git.openstack.org/openstack/sahara stable/train
-enable_plugin trove https://git.openstack.org/openstack/trove stable/train
+
+## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
+## enable_plugin trove https://git.openstack.org/openstack/trove stable/train
 
 enable_plugin sahara-dashboard https://git.openstack.org/openstack/sahara-dashboard stable/train
-enable_plugin trove-dashboard https://git.openstack.org/openstack/trove-dashboard stable/train
+
+## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
+## related to django
+## enable_plugin trove-dashboard https://git.openstack.org/openstack/trove-dashboard stable/train
 
 enable_plugin neutron https://git.openstack.org/openstack/neutron stable/train
 #enable_plugin neutron-lbaas https://git.openstack.org/openstack/neutron-lbaas
@@ -207,7 +212,8 @@ MURANO_APPS=io.murano.apps.apache.Tomcat,io.murano.apps.Guacamole
 # Some more processing for translation check site
 enable_plugin horizon-i18n-tools https://github.com/amotoki/horizon-i18n-tools.git
 
-LIBS_FROM_GIT=django_openstack_auth
+## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
+## LIBS_FROM_GIT=django_openstack_auth
 HORIZONAUTH_BRANCH=stable/train
 
 ## 20200229-01 - NS - removed becasue of keystone launch error
@@ -266,8 +272,8 @@ EOF
 
 ./stack.sh
 
-
-./run_tests.sh
+## 20200301 - Run tests after install completes  succesfully.
+## ./run_tests.sh
 
 ### https://github.com/openstack/devstack/blob/master/samples/local.sh
 ### https://raw.githubusercontent.com/openstack/devstack/master/samples/local.sh
