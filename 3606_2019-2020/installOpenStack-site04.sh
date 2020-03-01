@@ -54,7 +54,7 @@
 ### https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-set-the-proxy-for-apt-for-ubuntu-18-04/
 ### https://askubuntu.com/questions/344802/why-is-apt-get-always-using-proxy-although-no-proxy-is-configured
 sudo touch /etc/apt/apt.conf.d/proxy.conf
-cat >  /etc/apt/apt.conf.d/proxy.conf <<EOF
+sudo cat >  /etc/apt/apt.conf.d/proxy.conf <<EOF
 Acquire::http::Proxy "false";
 Acquire::https::Proxy "false";
 Acquire::ftp::Proxy "false";
@@ -63,7 +63,7 @@ EOF
 ### https://gist.github.com/trastle/5722089
 ### https://askubuntu.com/questions/679233/failed-to-fetch-hash-sum-mismatch-tried-rm-apt-list-but-didnt-work
 sudo touch /etc/apt/apt.conf.d/99fixbadproxy
-cat >  /etc/apt/apt.conf.d/99fixbadproxy <<EOF
+sudo cat >  /etc/apt/apt.conf.d/99fixbadproxy <<EOF
 Acquire::http::Pipeline-Depth "0";
 Acquire::http::No-Cache=True;
 Acquire::https::Pipeline-Depth "0";
