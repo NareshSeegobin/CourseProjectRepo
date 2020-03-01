@@ -244,6 +244,10 @@ fi
 ## https://stackoverflow.com/questions/21270426/enabled-services-in-devstack
 enable_service swift
 
+## https://github.com/openstack/devstack/blob/master/samples/local.conf
+SWIFT_HASH=66a3d6b56c1f479c8b4e70ab5c2000f5
+
+
 ## https://www.rushiagr.com/blog/2014/01/16/playing-around-with-cinder-backend/
 CINDER_MULTI_LVM_BACKEND=True
 
@@ -260,6 +264,14 @@ EOF
 
 
 ./stack.sh
+
+
+### https://github.com/openstack/devstack/blob/master/samples/local.sh
+### https://raw.githubusercontent.com/openstack/devstack/master/samples/local.sh
+wget https://raw.githubusercontent.com/openstack/devstack/master/samples/local.sh
+./local.sh
+
+
 
 echo [Time Stamp:]
 ## https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script
