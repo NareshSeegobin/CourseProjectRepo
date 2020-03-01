@@ -49,6 +49,17 @@
 ## https://askubuntu.com/questions/590027/how-to-set-python-3-as-default-interpreter-in-ubuntu-14-04
 ##alias pip=/usr/bin/python3.6
 
+### Automatically disabled Acquire::http::Pipeline-Depth due to incorrect response from server/proxy. (man 5 apt.conf)
+### https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-set-the-proxy-for-apt-for-ubuntu-18-04/
+### https://askubuntu.com/questions/344802/why-is-apt-get-always-using-proxy-although-no-proxy-is-configured
+sudo touch /etc/apt/apt.conf.d/proxy.conf
+cat >  /etc/apt/apt.conf.d/proxy.conf <<EOF
+Acquire::http::Proxy "false";
+Acquire::https::Proxy "false";
+Acquire::ftp::Proxy "false";
+EOF
+
+
 ### https://wiki.openstack.org/wiki/Python3
 sudo apt-get install python3-dev -y
 sudo apt-get install python3-pip -y
