@@ -184,6 +184,8 @@ enable_service q-trunk
 
 
 enable_service ceilometer-acompute ceilometer-acentral ceilometer-collector ceilometer-api
+## https://docs.openstack.org/horizon/pike/contributor/ref/local_conf.html
+## Enable Swift (Object Store) without replication
 enable_service s-proxy s-object s-container s-account
 
 ## https://ask.openstack.org/en/question/57376/installing-devstack-unable-to-connect-to-gitopenstackorg/
@@ -227,17 +229,38 @@ MURANO_APPS=io.murano.apps.apache.Tomcat,io.murano.apps.Guacamole
 # Some more processing for translation check site
 enable_plugin horizon-i18n-tools https://github.com/amotoki/horizon-i18n-tools.git
 
+## 20200302-10 - NS - https://docs.openstack.org/horizon/latest/install/plugin-registry.html
+## TODO
+
+
 ## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
 ## LIBS_FROM_GIT=django_openstack_auth
 HORIZONAUTH_BRANCH=stable/rocky
 
 ## 20200229-01 - NS - removed becasue of keystone launch error
-##KEYSTONE_TOKEN_FORMAT=UUID
+## 20200302-02 - NS - See lines below...
+## KEYSTONE_TOKEN_FORMAT=UUID
+
+## 20200302-02 - NS - See lines below...
+## https://wiki.openstack.org/wiki/Swift/DevstackSetupForKeystoneV3
+# Select Keystone's token format
+# Choose from 'UUID', 'PKI', or 'PKIZ'
+# INSERT THIS LINE...
+## KEYSTONE_TOKEN_FORMAT=${KEYSTONE_TOKEN_FORMAT:-UUID}
+## KEYSTONE_TOKEN_FORMAT=$(echo ${KEYSTONE_TOKEN_FORMAT} | tr '[:upper:]' '[:lower:]')
+## End result
+
+KEYSTONE_TOKEN_FORMAT=UUID
+ 
+ 
 
 ## 20200302 - NS - may not be keystone but python3 related.
 PRIVATE_NETWORK_NAME=net1
 PUBLIC_NETWORK_NAME=ext_net
 
+
+## 20200302 - 01 - NS - https://ask.openstack.org/en/question/27081/enable-swift-in-openstack-devstack/
+## ENABLED_SERVICES+=,s-proxy,s-object,s-container,s-account ????
 
 #-----------------------------
 # Neutron
@@ -265,11 +288,22 @@ if [ "$Q_PLUGIN" = "ml2" ]; then
 fi
 
 
+## 20200302 - NS - https://wiki.openstack.org/wiki/Swift/DevstackSetupForKeystoneV3
 ## https://stackoverflow.com/questions/21270426/enabled-services-in-devstack
 enable_service swift
 
 ## https://github.com/openstack/devstack/blob/master/samples/local.conf
 SWIFT_HASH=66a3d6b56c1f479c8b4e70ab5c2000f5
+
+## https://docs.openstack.org/horizon/pike/contributor/ref/local_conf.html
+SWIFT_REPLICAS=3
+SWIFT_DATA_DIR=$DEST/data/swift
+
+
+
+## https://wiki.openstack.org/wiki/Swift/DevstackSetupForKeystoneV3
+## Configure Keystone
+iniset ${SWIFT_CONFIG_PROXY_SERVER} filter:authtoken auth_version v3.0
 
 
 ## https://www.rushiagr.com/blog/2014/01/16/playing-around-with-cinder-backend/
@@ -279,6 +313,12 @@ CINDER_MULTI_LVM_BACKEND=True
 ## https://ask.openstack.org/en/question/57376/installing-devstack-unable-to-connect-to-gitopenstackorg/
 ### Didn't work - need to change git:// to https://
 ### GIT_BASE=${GIT_BASE:-https://git.openstack.org}
+
+## 20200302-01 - NS - https://docs.openstack.org/horizon/pike/contributor/ref/local_conf.html
+[[post-config|$GLANCE_API_CONF]]
+[DEFAULT]
+default_store=file
+
 
 ## End of File
 EOF
