@@ -179,6 +179,7 @@ enable_plugin heat https://git.openstack.org/openstack/heat
 # Enable the Trunks extension for Neutron
 enable_service q-trunk
 # Enable the QoS extension for Neutron
+## 20200302 - NS - duplicated entry below
 ## enable_service q-qos
 
 
