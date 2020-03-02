@@ -174,6 +174,10 @@ HEAT_BRANCH=stable/rocky
 ## https://docs.openstack.org/horizon/pike/contributor/ref/local_conf.html
 # Enable Heat
 enable_plugin heat https://git.openstack.org/openstack/heat
+
+## 20200302-01 - NS - https://docs.openstack.org/devstack/ocata/configuration.html#swift
+enable_service heat h-api h-api-cfn h-api-cw h-eng
+
 # Enable Neutron - installtion parameter  duplicated below
 ### enable_plugin neutron https://git.openstack.org/openstack/neutron
 # Enable the Trunks extension for Neutron
@@ -286,6 +290,9 @@ if [ "$Q_PLUGIN" = "ml2" ]; then
   Q_ML2_TENANT_NETWORK_TYPE=vxlan
   :
 fi
+
+### 20200302-10 NS - https://docs.openstack.org/devstack/train/guides/neutron.html
+## TODO
 
 
 ## 20200302 - NS - https://wiki.openstack.org/wiki/Swift/DevstackSetupForKeystoneV3
