@@ -269,9 +269,18 @@ HORIZONAUTH_BRANCH=stable/rocky
 # INSERT THIS LINE...
 ## KEYSTONE_TOKEN_FORMAT=${KEYSTONE_TOKEN_FORMAT:-UUID}
 ## KEYSTONE_TOKEN_FORMAT=$(echo ${KEYSTONE_TOKEN_FORMAT} | tr '[:upper:]' '[:lower:]')
-## End result
+## End result - 20200303-01 - NS - See lines below:
 
-KEYSTONE_TOKEN_FORMAT=UUID
+## 20200303-01 - NS - https://bugs.launchpad.net/kolla-ansible/+bug/1757520
+##                    https://bugs.launchpad.net/keystone/+bug/1753584
+##                          Unable to find 'uuid' driver in 'keystone.token.provider'.
+##                          Remove uuid as keystone_token_provider
+##                          Keystone removed uuid token provider in Rocky
+##                          This patch change the default value and fix comments for the option.
+##                          Change-Id: Idca0004852b688fcdd34ef47c38dec6b8bf05f86
+##                          Closes-Bug: #1757520
+
+## KEYSTONE_TOKEN_FORMAT=UUID
  
  
 
