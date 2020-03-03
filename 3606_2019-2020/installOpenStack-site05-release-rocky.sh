@@ -141,6 +141,13 @@ cat >  local.conf <<EOF
 ## 20200302 - NS - using Ubuntu 16 - sdo not attempt with Pyton3 as yet
 ### 20200303-01 - NS - Add back as some packages need python3 explicitly installed.
 USE_PYTHON3=True
+## 20200303-02 - NS - TODO for heat.
+## https://opendev.org/openstack/devstack/src/branch/stable/pike/stackrc?lang=zh-TW
+# Control whether Python 3 is enabled for specific services by the
+# base name of the directory from which they are installed. See
+# enable_python3_package to edit this variable and use_python3_for to
+# test membership.
+## export ENABLED_PYTHON3_PACKAGES="nova,glance,cinder,uwsgi,python-openstackclient"
 ENABLED_PYTHON3_PACKAGES=horizon
 ## https://docs.openstack.org/devstack/latest/configuration.html#use-python3
 PIP_UPGRADE=True
