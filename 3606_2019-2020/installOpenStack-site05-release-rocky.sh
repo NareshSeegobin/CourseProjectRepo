@@ -94,8 +94,11 @@ sudo apt-get update -y && sudo apt-get upgrade -y && sleep 5
 sudo -H apt-get install python3-dev -y && sudo -H apt-get install python3-pip -y && sudo -H pip3 install --upgrade pip && sudo -H python3 -m pip install python-memcached
 ## https://askubuntu.com/questions/712339/how-to-upgrade-pip-to-latest
 ## https://stackoverflow.com/questions/38613316/how-to-upgrade-pip3
-sudo -H pip3 install --upgrade pip
+sudo -H pip3 install --upgrade pip && sleep 10 && echo endSleep
 
+## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
+##                    https://docs.djangoproject.com/en/3.0/topics/install/
+sudo -H python -m pip install Django && sleep 10 && echo endSleep
 
 
 sudo useradd -s /bin/bash -d /opt/stack -m stack
@@ -210,17 +213,25 @@ enable_service s-proxy s-object s-container s-account
 
 ## https://ask.openstack.org/en/question/57376/installing-devstack-unable-to-connect-to-gitopenstackorg/
 ## 20200303-01 - NS - django error with sahara dashboard
-### enable_plugin sahara https://git.openstack.org/openstack/sahara stable/rocky
+## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
+##                    https://docs.djangoproject.com/en/3.0/topics/install/
+ enable_plugin sahara https://git.openstack.org/openstack/sahara stable/rocky
 
 ## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
 ## 20200302 - NS - added back, could be Python3 issue.
+## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
+##                    https://docs.djangoproject.com/en/3.0/topics/install/
 enable_plugin trove https://git.openstack.org/openstack/trove stable/rocky
 
 ## 20200303-01 - NS - django error with sahara dashboard
-### enable_plugin sahara-dashboard https://git.openstack.org/openstack/sahara-dashboard stable/rocky
+## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
+##                    https://docs.djangoproject.com/en/3.0/topics/install/
+enable_plugin sahara-dashboard https://git.openstack.org/openstack/sahara-dashboard stable/rocky
 
 ## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
 ## related to django
+## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
+##                    https://docs.djangoproject.com/en/3.0/topics/install/
 ## 20200302 - NS - added back, could be Python3 issue.
  enable_plugin trove-dashboard https://git.openstack.org/openstack/trove-dashboard stable/rocky
 
