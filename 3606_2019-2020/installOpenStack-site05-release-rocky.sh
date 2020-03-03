@@ -139,8 +139,9 @@ cat >  local.conf <<EOF
 
 ## https://wiki.openstack.org/wiki/Python3
 ## 20200302 - NS - using Ubuntu 16 - sdo not attempt with Pyton3 as yet
-## USE_PYTHON3=True
-## ENABLED_PYTHON3_PACKAGES=horizon
+### 20200303-01 - NS - Add back as some packages need python3 explicitly installed.
+USE_PYTHON3=True
+ENABLED_PYTHON3_PACKAGES=horizon
 ## https://docs.openstack.org/devstack/latest/configuration.html#use-python3
 PIP_UPGRADE=True
 
@@ -148,7 +149,9 @@ PIP_UPGRADE=True
 ##   """+"="*78, file=sys.stdout)
 ##                      ^
 ##    SyntaxError: invalid syntax
-## INSTALL_TEMPEST=True
+## 20200303-02 - NS - Add back as the errror was replated to python3. 
+## https://files.pythonhosted.org/packages/f0/bb/f41cbc8eaa807afb9d44418f092aa3e4acf0e4f42b439c49824348f1f45c/dnspython3-1.15.0.zip
+INSTALL_TEMPEST=True
 
 
 ADMIN_PASSWORD=secret
