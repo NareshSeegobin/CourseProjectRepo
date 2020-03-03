@@ -236,10 +236,11 @@ enable_plugin magnum https://git.openstack.org/openstack/magnum master
 enable_plugin magnum-ui https://git.openstack.org/openstack/magnum-ui master
 
 # designate-dashboard is installed by designate devstack plugin
-enable_plugin designate https://git.openstack.org/openstack/designate stable/rocky
-DESIGNATE_BACKEND_DRIVER=fake
-DESIGNATE_BRANCH=stable/rocky
-DESIGNATEDASHBOARD_BRANCH=stable/rocky
+## 20200303-01 - NS - Seems to be error with python3 and the install. Syntax error.
+## enable_plugin designate https://git.openstack.org/openstack/designate stable/rocky
+## DESIGNATE_BACKEND_DRIVER=fake
+## DESIGNATE_BRANCH=stable/rocky
+## DESIGNATEDASHBOARD_BRANCH=stable/rocky
 
 # murano-dashboard is installed by murano devstack plugin
 enable_plugin murano https://git.openstack.org/openstack/murano stable/rocky
