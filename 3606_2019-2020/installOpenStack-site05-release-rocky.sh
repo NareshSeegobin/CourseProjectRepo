@@ -209,13 +209,15 @@ enable_service ceilometer-acompute ceilometer-acentral ceilometer-collector ceil
 enable_service s-proxy s-object s-container s-account
 
 ## https://ask.openstack.org/en/question/57376/installing-devstack-unable-to-connect-to-gitopenstackorg/
-enable_plugin sahara https://git.openstack.org/openstack/sahara stable/rocky
+## 20200303-01 - NS - django error with sahara dashboard
+### enable_plugin sahara https://git.openstack.org/openstack/sahara stable/rocky
 
 ## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
 ## 20200302 - NS - added back, could be Python3 issue.
 enable_plugin trove https://git.openstack.org/openstack/trove stable/rocky
 
-enable_plugin sahara-dashboard https://git.openstack.org/openstack/sahara-dashboard stable/rocky
+## 20200303-01 - NS - django error with sahara dashboard
+### enable_plugin sahara-dashboard https://git.openstack.org/openstack/sahara-dashboard stable/rocky
 
 ## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
 ## related to django
