@@ -98,7 +98,7 @@ sudo -H pip3 install --upgrade pip && sleep 10 && echo endSleep
 
 ## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
 ##                    https://docs.djangoproject.com/en/3.0/topics/install/
-sudo -H python -m pip install Django && sleep 10 && echo endSleep
+sudo -H python3 -m pip install Django && sleep 10 && echo endSleep
 
 
 sudo useradd -s /bin/bash -d /opt/stack -m stack
