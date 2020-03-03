@@ -88,6 +88,8 @@ exit
 sudo apt-get update -y && sudo apt-get upgrade -y
 
 
+
+### Execute seprately from apt get update
 ### https://wiki.openstack.org/wiki/Python3
 sudo apt-get install python3-dev -y
 sudo apt-get install python3-pip -y
@@ -95,6 +97,8 @@ sudo python3 -m pip install python-memcached
 ## https://askubuntu.com/questions/712339/how-to-upgrade-pip-to-latest
 ## https://stackoverflow.com/questions/38613316/how-to-upgrade-pip3
 sudo -H pip3 install --upgrade pip
+
+
 
 sudo useradd -s /bin/bash -d /opt/stack -m stack
 echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
@@ -140,7 +144,11 @@ cat >  local.conf <<EOF
 ## https://docs.openstack.org/devstack/latest/configuration.html#use-python3
 PIP_UPGRADE=True
 
-INSTALL_TEMPEST=True
+## 20200303-01 - NS - Getting Syntax error for tis part - remove.
+##   """+"="*78, file=sys.stdout)
+##                      ^
+##    SyntaxError: invalid syntax
+## INSTALL_TEMPEST=True
 
 
 ADMIN_PASSWORD=secret
