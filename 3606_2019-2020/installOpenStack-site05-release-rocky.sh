@@ -103,6 +103,16 @@ sudo -H pip3 install --upgrade pip && sleep 10 && echo endSleep
 ##                    https://docs.djangoproject.com/en/3.0/topics/install/
 sudo -H python3 -m pip install Django && sleep 10 && echo endSleep
 
+## 20200303-01 - NS - Might have to diable sahara
+## ImportError: No module named openstack_dashboard.settings
+## https://answers.launchpad.net/horizon/+question/239533
+## https://duckduckgo.com/?q=DJANGO_SETTINGS_MODULE%3Dopenstack_dashboard.settings&t=brave&ia=web
+ sudo -H apt-get install python-pbr -y
+
+
+
+
+
 
 
 
