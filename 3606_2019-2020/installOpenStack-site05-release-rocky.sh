@@ -59,6 +59,12 @@
 ### https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-set-the-proxy-for-apt-for-ubuntu-18-04/
 ### https://askubuntu.com/questions/344802/why-is-apt-get-always-using-proxy-although-no-proxy-is-configured
 
+wget https://raw.githubusercontent.com/NareshSeegobin/CourseProjectRepo/master/3606_2019-2020/installOpenStack-site05-release-rocky-pre-Reqs.sh
+chmod 777 ./installOpenStack-site05-release-rocky-pre-Reqs.sh
+sudo -H /bin/bash ./installOpenStack-site05-release-rocky-pre-Reqs.sh
+
+
+
 sudo su -
 touch /etc/apt/apt.conf.d/proxy.conf
 cat >  /etc/apt/apt.conf.d/proxy.conf <<EOF
