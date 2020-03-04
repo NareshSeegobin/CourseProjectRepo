@@ -90,6 +90,9 @@ sudo apt-get update -y && sudo apt-get upgrade -y && sleep 5
 
 
 ### Execute seprately from apt get update
+
+sudo -H apt-get install python -y && sleep 5 &&  sudo apt-get python-dev -y && && sleep 5 && sudo -H python -m pip install Django
+
 ### https://wiki.openstack.org/wiki/Python3
 sudo -H apt-get install python3-dev -y && sudo -H apt-get install python3-pip -y && sudo -H pip3 install --upgrade pip && sudo -H python3 -m pip install python-memcached
 ## https://askubuntu.com/questions/712339/how-to-upgrade-pip-to-latest
@@ -99,6 +102,8 @@ sudo -H pip3 install --upgrade pip && sleep 10 && echo endSleep
 ## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
 ##                    https://docs.djangoproject.com/en/3.0/topics/install/
 sudo -H python3 -m pip install Django && sleep 10 && echo endSleep
+
+
 
 
 sudo useradd -s /bin/bash -d /opt/stack -m stack
