@@ -237,25 +237,29 @@ enable_service s-proxy s-object s-container s-account
 ## 20200303-01 - NS - django error with sahara dashboard
 ## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
 ##                    https://docs.djangoproject.com/en/3.0/topics/install/
- enable_plugin sahara https://git.openstack.org/openstack/sahara stable/rocky
+#### 20200304-01 - NS - ImportError: No module named openstack_dashboard.settings
+#### enable_plugin sahara https://git.openstack.org/openstack/sahara stable/rocky
 
 ## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
 ## 20200302 - NS - added back, could be Python3 issue.
 ## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
 ##                    https://docs.djangoproject.com/en/3.0/topics/install/
-enable_plugin trove https://git.openstack.org/openstack/trove stable/rocky
+#### #### 20200304-01 - NS - ImportError: No module named openstack_dashboard.settings
+#### enable_plugin trove https://git.openstack.org/openstack/trove stable/rocky
 
 ## 20200303-01 - NS - django error with sahara dashboard
 ## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
 ##                    https://docs.djangoproject.com/en/3.0/topics/install/
-enable_plugin sahara-dashboard https://git.openstack.org/openstack/sahara-dashboard stable/rocky
+#### 20200304-01 - NS - ImportError: No module named openstack_dashboard.settings
+#### enable_plugin sahara-dashboard https://git.openstack.org/openstack/sahara-dashboard stable/rocky
 
 ## 20200301 - NS - Removed due to dhango ImportError: No module named django.core.management
 ## related to django
 ## 20200303-01 - NS - May need to install django python module. Not so syre why they just didn't install it.
 ##                    https://docs.djangoproject.com/en/3.0/topics/install/
 ## 20200302 - NS - added back, could be Python3 issue.
- enable_plugin trove-dashboard https://git.openstack.org/openstack/trove-dashboard stable/rocky
+#### 20200304-01 - NS - ImportError: No module named openstack_dashboard.settings
+#### enable_plugin trove-dashboard https://git.openstack.org/openstack/trove-dashboard stable/rocky
 
 enable_plugin neutron https://git.openstack.org/openstack/neutron stable/rocky
 #enable_plugin neutron-lbaas https://git.openstack.org/openstack/neutron-lbaas
@@ -283,7 +287,8 @@ enable_service murano-cfapi
 MURANO_APPS=io.murano.apps.apache.Tomcat,io.murano.apps.Guacamole
 
 # Some more processing for translation check site
-enable_plugin horizon-i18n-tools https://github.com/amotoki/horizon-i18n-tools.git
+#### 20200304-01 - NS - ImportError: No module named openstack_dashboard.settings
+#### enable_plugin horizon-i18n-tools https://github.com/amotoki/horizon-i18n-tools.git
 
 ## 20200302-10 - NS - https://docs.openstack.org/horizon/latest/install/plugin-registry.html
 ## TODO
