@@ -91,10 +91,10 @@ sudo apt-get update -y && sudo apt-get upgrade -y && sleep 5
 
 ### Execute seprately from apt get update
 
-sudo -H apt-get install python -y && sleep 5 &&  sudo apt-get python-dev -y && && sleep 5 && sudo -H python -m pip install Django
+sudo -H apt-get install python -y && sleep 5 &&  sudo apt-get install python-dev -y &&  sleep 5 && sudo -H apt-get install python-pip -y && sudo -H python -m pip install "Django<2" && sleep 5
 
 ### https://wiki.openstack.org/wiki/Python3
-sudo -H apt-get install python3-dev -y && sudo -H apt-get install python3-pip -y && sudo -H pip3 install --upgrade pip && sudo -H python3 -m pip install python-memcached
+sudo -H apt-get install python3-dev -y && sudo -H apt-get install python3-pip -y && sudo -H pip3 install --upgrade pip && sudo -H python3 -m pip install python-memcached && sleep 5
 ## https://askubuntu.com/questions/712339/how-to-upgrade-pip-to-latest
 ## https://stackoverflow.com/questions/38613316/how-to-upgrade-pip3
 sudo -H pip3 install --upgrade pip && sleep 10 && echo endSleep
