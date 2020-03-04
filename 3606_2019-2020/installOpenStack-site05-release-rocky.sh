@@ -107,6 +107,7 @@ sudo -H python3 -m pip install Django && sleep 10 && echo endSleep
 ## ImportError: No module named openstack_dashboard.settings
 ## https://answers.launchpad.net/horizon/+question/239533
 ## https://duckduckgo.com/?q=DJANGO_SETTINGS_MODULE%3Dopenstack_dashboard.settings&t=brave&ia=web
+## https://ask.openstack.org/en/question/69331/importerror-could-not-import-settings-openstack_dashboardsettings-is-it-on-syspath-is-there-an-import-error-in-the-settings-file-no-module-named/
  sudo -H apt-get install python-pbr -y
 
 
